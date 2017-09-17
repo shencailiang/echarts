@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+	<title></title>
+	
+    <style>
+	  
+	</style>
+
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.min.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body style="overflow:hidden;">
+      <input name="checkbox1" type="text" style="width:200px;" value="500"  id="width">1111
+    <input name="checkbox1" type="button"  value="click" checked id="chartButton">1111
+	<input name="checkbox1" type="checkbox"  checked >2222
+	<div style="overflow:auto">
+    <div id="container" style="width:400px;height:500px;margin-left:100px;border:2px solid blue;margin-top:100px;"></div>
+	</div>
+	<script type="text/javascript" src="echarts.js">	</script>
+	<script type="text/javascript" src="data1.js">	</script>
+	
+	<script type="text/javascript">
+	
+	Date.prototype.Format = function (fmt) {
+	    var o = {
+	        "M+": this.getMonth() + 1, //月份 
+	        "d+": this.getDate(), //日 
+	        "h+": this.getHours(), //小时 
+	        "m+": this.getMinutes(), //分 
+	        "s+": this.getSeconds(), //秒 
+	        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+	        "S": this.getMilliseconds() //毫秒 
+	    };
+	    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+	    for (var k in o)
+	    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+	    return fmt;
+	}
+	var chart = echarts.init(document.getElementById('container'));
+	function createChart() {
+	    var option ={
+			"color":[
+				"#4cc5f4",
+				"#fa5879",
+				"#f8e402",
+				"#4feaef",
+				"#9d58fa",
+				"#5899fa",
+				"#58fa6b",
+				"#fa6b58",
+				"#6058fa",
+				"#e75bfb",
+				"#f56268",
+				"#92dede",
+				"#f0e075",
+				"#92dead",
+				"#c3c4e3",
+				"#baf3fe",
+				"#ff9e6b",
+				"#d1dcee",
+				"#ec7ac8",
+				"#aebaea"
+			],
+		 
+			"tooltip":{
+				"trigger": "item"
+			},
+			grid:[
+			   {
+			    left: 40,
+				right: 10,
+				bottom:100
+			   }
+			],
+			"legend":{
+				"show":false,
+				"data":[
+					"2013-01",
+					"2013-07",
+					"2013-09",
+					"2013-11",
+					"2013-03",
+					"2013-05",
+					"2013-02",
+					"2013-04",
+					"2013-06",
+					"2013-08",
+					"2013-10",
+					"2013-12"
+				]
+			},
+			"calculable":true,
+			"xAxis":[
+				{
+					"type":"time",
+					"data":[
+						"2013-01",
+						"2013-07",
+						"2013-09",
+						"2013-11",
+						"2013-03",
+						"2013-05",
+						"2013-02",
+						"2013-04",
+						"2013-06",
+						"2013-08",
+						"2013-10",
+						"2013-12"
+					],
+					"key":"month",
+					"field":"month",
+					"timeFormat": 'month',
+					//'splitNum': 7,
+					"rotate":45,
+					"tickMax": true,
+					 min: 'dataMin',
+					 max: 'dataMax',
+					"axisLabel":{
+						"tooltip":{
+							"show":true							
+						},
+						formatter: function (params) {
+							return new Date(params).Format('yyyy-MM');
+						}
+					},
+					"silent":false,
+					"triggerEvent":true,
+					"selectEvent":true
+				}
+			],
+			"yAxis":[
+				{
+					"type":"value",
+					"key":"huan_bi",
+					"field":"huan_bi",
+					"rotate":0,
+					"boundaryGap":null,
+					"scale":false,
+					"axisLabel":{
+						"margin":10,
+						"tooltip":{
+							"show":true
+						}
+					},
+					"silent":false,
+					"triggerEvent":true,
+					"selectEvent":true,
+					"show":true,
+					"splitLine":{
+						"show":false
+					},
+					"axisTick":{
+						"secondTick":{
+							"show":false,
+							"length":3
+						},
+						"length":6
+					}
+				}
+			],
+			"series":[
+				 {
+					"name":"huan_bi",
+					 "data":[
+			   [
+                    "1945-01",
+                    0.11299999999999999
+                ],
+                [
+                    "1948-02",
+                    0.11299999999999999
+                ],
+                [
+                    "1951-03",
+                    0.12
+                ],
+                [
+                    "1964-04",
+                    0.135
+                ],
+                [
+                    "1972-05",
+                    0.149
+                ],
+                [
+                    "1987-06",
+                    0.0561
+                ],
+                [
+                    "1993-07",
+                    0.0672
+                ],
+				[
+                    "2000-01",
+                    0.0672
+                ],
+                [
+                    "2006-08",
+                    0.0233
+                ],
+                [
+                    "2013-09",
+                    0.07540000000000001
+                ],
+                [
+                    "2028-11",
+                    0.0725
+                ],
+                [
+                    "2034-12",
+                    0.0626
+                ],
+                [
+                    "2047-01",
+                    0.0527
+                ],
+                [
+                    "2059-02",
+                    0.097
+                ]
+            ],
+					"selectEvent":true,
+					"key":"huan_bi",
+					"type":"bar",
+					barWidth:'20%',
+					"symbol":"circle",
+					"showAllSymbol":true,
+					"label":{
+						"normal":{
+							"show":false,
+							"textStyle":{
+								"color":"#000"
+							},
+							"formatter":"",
+							"position":"top"
+						}
+					}
+				}
+			],
+			"backgroundColor":"#fff"
+		};
+		chart.setOption(option);
+	}
+	
+    createChart();
+	document.getElementById('chartButton').onclick = function () {
+	    var width = document.getElementById('width').value;
+		document.getElementById('container').style.width = width + 'px';
+		chart.dispose();
+		chart = echarts.init(document.getElementById('container'));
+		createChart();
+	};
+	</script>
+</body>
+</html>

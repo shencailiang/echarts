@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+	<title></title>
+	
+    <style>
+	  
+	</style>
+
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.min.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body style="overflow:hidden;">
+    <input name="checkbox1" type="button"  value="click" checked id="chartButton">1111
+	<input name="checkbox1" type="checkbox"  checked >2222
+    <div id="container" style="width:800px;height:400px;border:2px solid blue;">
+	
+	<script type="text/javascript" src="echarts.js">	</script>
+	
+	<script type="text/javascript">
+	    var chart = echarts.init(document.getElementById('container'));
+		
+
+	var option = {
+		tooltip : {
+			trigger: 'axis',
+			axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+				type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+			}
+		},
+		legend: {
+			data:['利润往日往日', '支出往日往日', '收入往日往日'],
+			formatter: function (name) {
+				return echarts.format.truncateText(name, 40, '14px Microsoft Yahei', '…');
+			},
+			tooltip: {
+				show: true
+			}
+		},
+		grid: {
+			left: '3%',
+			right: '4%',
+			bottom: '3%',
+			containLabel: true
+		},
+		yAxis : [
+			{
+				type : 'value',
+				silent: false,
+				triggerEvent:true,
+				axisLabel :{
+				   	formatter: function (name) {
+						return echarts.format.truncateText(name, 30, '14px Microsoft Yahei', '…');
+					},
+					tooltip: {
+						show: true
+					}
+				}
+			
+			}
+		],
+		xAxis : [
+			{
+				type : 'category',
+				axisTick : {show: false},
+				data : ['周一你是谁','周二你是谁','周三你是谁','周四你是谁','周五你是谁','周六你是谁','周日你是谁'],
+				silent: false,
+				triggerEvent:true,				
+				axisLabel :{
+				   	formatter: function (name) {
+						return echarts.format.truncateText(name, 70, '14px Microsoft Yahei', '…');
+					},
+					tooltip: {
+						show: true
+					}
+				}
+			}
+		],
+		series : [
+			{
+				name:'利润往日往日',
+				type:'bar',
+				label: {
+					normal: {
+						show: true,
+						position: 'inside'
+					}
+				},
+				data:[200, 170, 240, 244, 200, 220, 210]
+			},
+			{
+				name:'收入往日往日',
+				type:'bar',
+				stack: '总量',
+				label: {
+					normal: {
+						show: true
+					}
+				},
+				data:[320, 302, 341, 374, 390, 450, 420]
+			}		
+		]
+	};
+
+    chart.setOption(option);
+	
+	
+	
+	</script>
+</body>
+</html>

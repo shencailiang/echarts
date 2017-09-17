@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+	<title></title>
+	
+    <style>
+	  
+	</style>
+
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.min.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body style="overflow:hidden;">
+    <input name="checkbox1" type="button"  value="click" checked id="chartButton">1111
+	<input name="checkbox1" type="checkbox"  checked >2222
+    <div id="container" style="width:1200px;height:400px;border:2px solid blue;margin-top:100px;">
+	
+	<script type="text/javascript" src="echarts.js">	</script>
+	<script type="text/javascript" src="data1.js">	</script>
+	
+	<script type="text/javascript">
+	
+	Date.prototype.Format = function (fmt) {
+	    var o = {
+	        "M+": this.getMonth() + 1, //月份 
+	        "d+": this.getDate(), //日 
+	        "h+": this.getHours(), //小时 
+	        "m+": this.getMinutes(), //分 
+	        "s+": this.getSeconds(), //秒 
+	        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+	        "S": this.getMilliseconds() //毫秒 
+	    };
+	    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+	    for (var k in o)
+	    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+	    return fmt;
+	}
+	var chart = echarts.init(document.getElementById('container'));
+	var option ={
+    "color":[
+        'green'
+    ],
+ 
+    "tooltip":{
+        "trigger": "item"
+    },
+    "legend":{
+        "show":false,
+        "data":[
+            "2013-01",
+            "2013-07",
+            "2013-09",
+            "2013-11",
+            "2013-03",
+            "2013-05",
+            "2013-02",
+            "2013-04",
+            "2013-06",
+            "2013-08",
+            "2013-10",
+            "2013-12"
+        ]
+    },
+    "calculable":true,
+    "xAxis":[
+        {
+            "type":"time",
+            "data":[
+                "2013-01",
+                "2013-07",
+                "2013-09",
+                "2013-11",
+                "2013-03",
+                "2013-05",
+                "2013-02",
+                "2013-04",
+                "2013-06",
+                "2013-08",
+                "2013-10",
+                "2013-12"
+            ],
+            "key":"month",
+            "field":"month",
+			"timeFormat": 'day',
+			//'splitNum': 7,
+            "rotate":45,
+			"tickMax": true,
+			 min: 'dataMin',
+			 max: 'dataMax',
+            "axisLabel":{
+                "tooltip":{
+                    "show":true,
+					formatter: function (params) {
+						return new Date(params.name).Format('yyyy-MM-dd');
+					}
+                },
+				formatter: function (params) {
+				    return new Date(params).Format('yyyy-MM-dd');
+				}
+            },
+            "silent":false,
+            "triggerEvent":true,
+            "selectEvent":true
+        }
+    ],
+    "yAxis":[
+        {
+            "type":"value",
+            "key":"huan_bi",
+            "field":"huan_bi",
+            "rotate":0,
+            "boundaryGap":null,
+            "scale":false,
+            "axisLabel":{
+                "margin":10,
+                "tooltip":{
+                    "show":true
+                }
+            },
+            "silent":false,
+            "triggerEvent":true,
+            "selectEvent":true,
+            "show":true,
+            "splitLine":{
+                "show":false
+            },
+            "axisTick":{
+                "secondTick":{
+                    "show":false,
+                    "length":3
+                },
+                "length":6
+            }
+        }
+    ],
+    "series":[
+         {
+            "name":"huan_bi",
+            "data":[
+                [
+                    "1950-4-7",
+                    0.11299999999999999
+                ],
+                [
+                    "1957-9-2",
+                    0.12
+                ],
+                [
+                    "1964-10-3",
+                    0.135
+                ],
+                [
+                    "1978-4-29",
+                    0.149
+                ],
+                [
+                    "1984-2-12",
+                    0.0561
+                ],
+                [
+                    "1997-11-12",
+                    0.0672
+                ],
+                [
+                    "2008-12-18",
+                    0.0233
+                ],
+                [
+                    "2013-5-19",
+                    0.07540000000000001
+                ],
+                [
+                    "2025-7-28",
+                    0.0725
+                ],
+                [
+                    "2037-12-19",
+                    0.0626
+                ]
+               
+            ],
+            "selectEvent":true,
+            "key":"huan_bi",
+            "type":"bar",
+			barWidth:'20%',
+            "symbol":"circle",
+            "showAllSymbol":true,
+            "label":{
+                "normal":{
+                    "show":false,
+                    "textStyle":{
+                        "color":"#000"
+                    },
+                    "formatter":"",
+                    "position":"top"
+                }
+            }
+        }
+    ],
+    "backgroundColor":"#fff"
+};
+	chart.setOption(option);
+
+	</script>
+</body>
+</html>

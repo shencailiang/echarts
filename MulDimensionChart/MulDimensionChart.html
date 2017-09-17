@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+	<title></title>
+</head>
+<body style="overflow:hidden;">
+    <div id="container" style="width:1200px;height:500px;border:2px solid blue;margin-top:100px;">
+	
+	<script type="text/javascript" src="echarts.js">	</script>
+	<script type="text/javascript" src="MulDimensionChart.js">	</script>	
+	<script type="text/javascript" src="data/data5.js">	</script>
+	
+	<script type="text/javascript">
+	window.onload = function () {
+	    var chart = new MulDimensionChart(document.getElementById("container"), data, dimension, measure);
+	};
+	    
+	</script>
+	
+</body>
+</html>
